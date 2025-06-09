@@ -1,0 +1,26 @@
+Simulation Code Description for Reliability Assessment
+---------------------------------------------------
+
+This repository contains two Python scripts for simulating the reliability assessment of power systems as described in the article. The simulations are implemented using pandapower, networkx, numpy, pandas, and scipy, following the methodologies in Sections III, IV, V, and VI of the article.
+
+1. simulate_9bus_risk_assessment.py
+----------------------------------
+This script simulates the reliability of a modified 9-bus power system (Section VI, Figure 1) with single bus and breaker-and-a-half configurations. It implements the risk assessment framework (Figures 4 and 5) using parameters from Tables I, II, and III. The script:
+- Models a 9-bus network with 6 lines, 2 generators (G2, G3), and 3 loads.
+- Calculates risks (L1, L2, L3, L4) for line faults (Fault 1, Fault 2) per Equations (1)-(5).
+- Produces Tables IV-VII for risk combinations and Table VIII for total risk.
+- Generates Figures 12 and 13 for degradation and operation failure probabilities (Equations (7)-(8)).
+- Assumes load loss of 125 MW (Table IV) and P_lk = P_rk = 0.81 (Table I).
+
+2. simulate_68bus_risk_assessment.py
+-----------------------------------
+This script simulates the reliability of a 68-bus power system (Section VI) focusing on tie-line faults. It uses the same framework (Figures 4 and 5) and parameters from Tables I, II, and III. The script:
+- Models a 68-bus network with 5 tie-lines (e.g., 27-54), 2 generators, and 3 loads.
+- Calculates risks for tie-line faults in single bus and breaker-and-a-half configurations.
+- Produces Table IX for tie-line risks, Table X for single bus risk details, and Table XI for breaker-and-a-half risk details.
+- Assumes load loss of 1000 MW (hypothetical, due to lack of specific data).
+- Excludes plotting functions as per requirements.
+
+Both scripts simplify the Dynamic Fault Tree (DFT, Section V, Figures 7-8) using P_p0 = 0.0069 (Table III) and account for breaker-and-a-half configurations with a 50% reduction in failure probabilities (P_lk_breaker_half = 0.405).
+
+Note: The 68-bus network is defined hypothetically due to the absence of IEEE 68-bus data in pandapower and limited details in the article. Users may need to adjust network parameters (e.g., loads, line capacities) for convergence of optimal power flow (OPF).
